@@ -45,6 +45,7 @@ def solve_qus():
         for y in range(x, sheet.nrows):
             index = str(y)
             cur_list = dicc[index]
+            print(y)
             sp = cur_list[0].split('，')
             for item in range(len(sp)):
                 if sp[item] != '':
@@ -55,10 +56,11 @@ def solve_qus():
                 for vis_index in range(45):
                     vis[vis_index] = 0
                 res.append(cnt)
+                print('bingo')
                 break
             else:
                 cnt += 1
-
+        print('ans : ', cnt)
     minium = 100
 
     for res_index in range(len(res)):
