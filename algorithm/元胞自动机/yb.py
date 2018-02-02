@@ -12,12 +12,10 @@ import matplotlib.pyplot as plt
 from PIL import Image
 
 
-msize = 5
+msize = 10
 
 # init CA matrix of 10 × 10
 ca_matrix = np.array(np.random.randint(0, 2, (msize, msize)))
-
-bb = [[1 ,1],[1,1]]
 
 # four directions
 directions = [[0,-1],[-1,0],[1,0],[0,1]]
@@ -35,35 +33,46 @@ def judge_cell_state(x, y):
 
     # amount of alive cell
     if cnt == 3:
-        ca_matrix[x][y] = 0
+        ca_matrix[x][y] = 1
     elif cnt == 2:
         pass
     else:
-        ca_matrix[x][y] = 1
+        ca_matrix[x][y] = 0
 
 
 def run():
+    last = [[]]
+    curr = ca_matrix
     while True:
+        if np.all(last == curr):
+            break
+        last = np.copy(curr)
         for i in range(msize):
             for j in range(msize):
                 judge_cell_state(i, j)
 
+        curr = np.copy(ca_matrix)
         print(ca_matrix)
         print('---------------------')
 
-        #image = Image.fromarray(ca_matrix)
-        #Image._show(image)
 
-        if np.all(ca_matrix) == True:
-            break
+    for i in range(msize):
+        for j in range(msize):
+            if curr[i][j]:
+                curr[i][j] = 0
+            else:
+                curr[i][j] = 255
+
+    image = Image.fromarray(curr)
+    Image._show(image)
+
     print('over')
 
 
 if __name__ == '__main__':
-    print('初始数组')
+    print('***********************')
     print(ca_matrix)
     print('***********************')
-    #print(ca_matrix)
     #print(judge_cell_state(4, 4))
     run()
     #print(np.all(bb))
