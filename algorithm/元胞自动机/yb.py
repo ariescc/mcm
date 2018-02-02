@@ -11,7 +11,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from PIL import Image
 
-
+# 元胞矩阵维数
 msize = 10
 
 # init CA matrix of 10 × 10
@@ -55,7 +55,7 @@ def run():
         print(ca_matrix)
         print('---------------------')
 
-
+    # 绘制图片
     for i in range(msize):
         for j in range(msize):
             if curr[i][j]:
