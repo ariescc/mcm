@@ -6,7 +6,10 @@ G = np.array(data)
 #print(G)
 
 # 选取3个点作为聚类中心
-a, b, c = np.random.randint(0, 10, 3)
+#a, b, c = np.random.randint(0, 10, 3)
+a = 5
+b = 9
+c = 8
 print(a,b,c)
 print(G[a][0])
 print(G[b][0])
