@@ -10,6 +10,9 @@ index_dict = {
     'HR': 'Human Rights And Rule Of Law',
     'OP': 'Demographsc Pressures',
     'RO': 'Refugees and IDPs',
-    'EX': 'External Intervention'
+    'EX': 'External Intervention',
+    'Drought': 'Drought',
+    'SeaLevel': 'Sea Level Above 5 meters',
+    'Forest': 'Forest Cover Area'
 }
 
