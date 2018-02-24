@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div id="container" style="height: 100%"></div>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+       <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+       <script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+option = {
+    title: {
+        text: 'Index and climate correlation',
+        subtext: '纯属虚构',
+        left: 'left',
+        top: 'bottom'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c}%"
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        data: ['Forest area',
+                'Cultivated area',
+                'Carbon dioxide emissions',
+                'Energy consumption of fossil fuels',
+                'Drought Floods and extreme temperatures Percentage of total population',
+                'Land area',
+                'Life expectancy at birth',
+                'GDP growth rate',
+                'Import of goods and services',
+                'Per capita GDP',
+                'Research expenditure',
+                'High-tech exports',
+                'Net energy imports',
+                'Total health expenditure',
+                'Total savings',
+                'Journal articles',
+                'Primary school enrollment',
+                'The percentage of the population aged 15-64 in total population',
+                'Industrial added value',
+                'Urban population to improve sanitation']
+    },
+    calculable: true,
+    series: [
+        {
+            name: '漏斗图',
+            type: 'funnel',
+            width: '40%',
+            height: '45%',
+            left: '15%',
+            top: '50%',
+            funnelAlign: 'right',
+            
+            label: {
+                normal: {
+                    show: false
+                }
+            },
+
+            center: ['25%', '25%'],  // for pie
+
+            data:[
+                {value:0.749, name:'Forest area'},
+                {value:0.509, name:'Cultivated area'},
+                {value:0.488, name:'Carbon dioxide emissions'},
+                {value:0.445, name:'Energy consumption of fossil fuels'},
+                {value:0.422, name:'Drought Floods and extreme temperatures Percentage of total population'},
+                {value:0.390, name:'Land area'},
+                {value:0.358, name:'Life expectancy at birth'},
+                {value:0.353, name:'GDP growth rate'},
+                {value:0.311, name:'Import of goods and services'},
+                {value:0.293, name:'Per capita GDP'},
+                {value:0.282, name:'Research expenditure'},
+                {value:0.263, name:'High-tech exports'},
+                {value:0.204, name:'Net energy imports'},
+                {value:0.183, name:'Total health expenditure'},
+                {value:0.149, name:'Total savings'},
+                {value:0.125, name:'Journal articles'},
+                {value:0.107, name:'Primary school enrollment'},
+                {value:0.086, name:'The percentage of the population aged 15-64 in total population'},
+                {value:0.067, name:'Industrial added value'},
+                {value:0.013, name:'Urban population to improve sanitation'}
+            ]
+        },
+        {
+            name: '金字塔',
+            type:'funnel',
+            width: '40%',
+            height: '45%',
+            left: '15%',
+            top: '5%',
+            sort: 'ascending',
+            funnelAlign: 'right',
+
+            label: {
+                normal: {
+                    show: false
+                }
+            },
+
+
+            center: ['25%', '75%'],  // for pie
+
+            data:[
+                {value:0.749, name:'Forest area'},
+                {value:0.509, name:'Cultivated area'},
+                {value:0.488, name:'Carbon dioxide emissions'},
+                {value:0.445, name:'Energy consumption of fossil fuels'},
+                {value:0.422, name:'Drought Floods and extreme temperatures Percentage of total population'},
+                {value:0.390, name:'Land area'},
+                {value:0.358, name:'Life expectancy at birth'},
+                {value:0.353, name:'GDP growth rate'},
+                {value:0.311, name:'Import of goods and services'},
+                {value:0.293, name:'Per capita GDP'},
+                {value:0.282, name:'Research expenditure'},
+                {value:0.263, name:'High-tech exports'},
+                {value:0.204, name:'Net energy imports'},
+                {value:0.183, name:'Total health expenditure'},
+                {value:0.149, name:'Total savings'},
+                {value:0.125, name:'Journal articles'},
+                {value:0.107, name:'Primary school enrollment'},
+                {value:0.086, name:'The percentage of the population aged 15-64 in total population'},
+                {value:0.067, name:'Industrial added value'},
+                {value:0.013, name:'Urban population to improve sanitation'}
+            ]
+        },
+        {
+            name:'漏斗图',
+            type:'funnel',
+            width: '40%',
+            height: '45%',
+            left: '60%',
+            top: '5%',
+            funnelAlign: 'left',
+
+            center: ['75%', '25%'],  // for pie
+
+            data: [
+                {value:0.749, name:'Forest area'},
+                {value:0.509, name:'Cultivated area'},
+                {value:0.488, name:'Carbon dioxide emissions'},
+                {value:0.445, name:'Energy consumption of fossil fuels'},
+                {value:0.422, name:'Drought Floods and extreme temperatures Percentage of total population'},
+                {value:0.390, name:'Land area'},
+                {value:0.358, name:'Life expectancy at birth'},
+                {value:0.353, name:'GDP growth rate'},
+                {value:0.311, name:'Import of goods and services'},
+                {value:0.293, name:'Per capita GDP'},
+                {value:0.282, name:'Research expenditure'},
+                {value:0.263, name:'High-tech exports'},
+                {value:0.204, name:'Net energy imports'},
+                {value:0.183, name:'Total health expenditure'},
+                {value:0.149, name:'Total savings'},
+                {value:0.125, name:'Journal articles'},
+                {value:0.107, name:'Primary school enrollment'},
+                {value:0.086, name:'The percentage of the population aged 15-64 in total population'},
+                {value:0.067, name:'Industrial added value'},
+                {value:0.013, name:'Urban population to improve sanitation'}
+            ]
+        },
+        {
+            name: '金字塔',
+            type:'funnel',
+            width: '40%',
+            height: '45%',
+            left: '60%',
+            top: '50%',
+            sort: 'ascending',
+            funnelAlign: 'left',
+
+            center: ['75%', '75%'],  // for pie
+
+            data: [
+                {value:0.749, name:'Forest area'},
+                {value:0.509, name:'Cultivated area'},
+                {value:0.488, name:'Carbon dioxide emissions'},
+                {value:0.445, name:'Energy consumption of fossil fuels'},
+                {value:0.422, name:'Drought Floods and extreme temperatures Percentage of total population'},
+                {value:0.390, name:'Land area'},
+                {value:0.358, name:'Life expectancy at birth'},
+                {value:0.353, name:'GDP growth rate'},
+                {value:0.311, name:'Import of goods and services'},
+                {value:0.293, name:'Per capita GDP'},
+                {value:0.282, name:'Research expenditure'},
+                {value:0.263, name:'High-tech exports'},
+                {value:0.204, name:'Net energy imports'},
+                {value:0.183, name:'Total health expenditure'},
+                {value:0.149, name:'Total savings'},
+                {value:0.125, name:'Journal articles'},
+                {value:0.107, name:'Primary school enrollment'},
+                {value:0.086, name:'The percentage of the population aged 15-64 in total population'},
+                {value:0.067, name:'Industrial added value'},
+                {value:0.013, name:'Urban population to improve sanitation'}
+            ]
+        }
+    ]
+};
+;
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+       </script>
+   </body>
+</html>

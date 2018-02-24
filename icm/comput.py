@@ -2,15 +2,20 @@ import numpy as np
 import pandas as pd
 import xlrd
 from pprint import pprint
+from xlwt import *
 
 """
-data.xls
-国家  出生率  死亡率  GDP总额  人均GDP
+data2014.xls
 """
+
+file = Workbook(encoding='utf-8')
+table = file.add_sheet('sheet1')
 
 data = pd.read_excel('./Resource/data2014.xlsx')
+#data = pd.read_excel('./Resource/exceptEnvironment.xlsx')
 #print(data.values.shape)
 nrows, ncols = data.values.shape
+#print(nrows, ncols)
 array = np.array(data.values)
 X0 = np.ones(4)
 
@@ -18,11 +23,11 @@ dij = np.array(data.values)
 
 for row in range(nrows - 3):
     for col in range(1, ncols):
-        array[row][col] = (array[row][col] - array[10][col]) / array[12][col]
+        array[row][col] = (array[row][col] - array[nrows-3][col]) / array[nrows-1][col]
         # 初始化 |xi(j)-x0(j)|
         dij[row][col] = abs(array[row][col] - 1)
 
-#print(array[:-3, :])
+#print(array[:-3, :][0])
 #print(len(array))
 
 #print(dij)
@@ -32,8 +37,8 @@ tmp = dij[:-3,1:]
 a = tmp.min()
 b = tmp.max()
 p = 0.5
-print(a)
-print(b)
+#print('a',a)
+#print('b',b)
 
 xg_y = np.array(data.values)
 for row in range(nrows - 3):
@@ -47,7 +52,7 @@ xg_Z = np.zeros(ncols)
 for col in range(1, ncols):
     for row in range(nrows - 3):
         xg_Z[col] = xg_Z[col] + xg_y[row][col]
-    xg_Z[col] = xg_Z[col] / 10
+    xg_Z[col] = xg_Z[col] / (nrows-3)
 
 
 xg_Z = xg_Z[1:]
@@ -59,7 +64,7 @@ W = np.zeros(ncols)
 for index in range(len(xg_Z)):
     W[index] = xg_Z[index] / xg_Z_sum
 
-print(W)
+#print(W)
 
 
 # 量化各个国家的发展水平
@@ -73,6 +78,11 @@ for row in range(nrows - 3):
 
 print(G)
 
+#for index in range(len(G)):
+#    table.write(index, 0, G[index,0])
+#    table.write(index, 1, G[index,1])
+
+#file.save('Q:\\ariescc\\mcm\\out.xls')
 
 #fragile = list()
 # 1 - G 为各国的脆弱性水平
